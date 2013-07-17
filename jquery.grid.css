@@ -1,0 +1,63 @@
+/*! nice Grid 0.1.0
+ * (c) 2012-2013 Jony Zhang <zj86@live.cn>, MIT Licensed
+ * http://niceue.com/grid/
+ */
+.grid-loading{position:absolute;z-index:100;width:100%;height:100%;margin:-2px;background:url("Images/loading_icon.gif") center center no-repeat;background-color:rgba(255,255,255,0.3);filter:progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr='#4cffffff', EndColorStr='#4cffffff')}
+:root .grid-loading{filter:0}
+.grid-wrap td{padding:0}
+.grid-wrap .ok{color:#090;font-style:normal}
+.grid-wrap .no{color:#f00;font-style:normal}
+.grid-head,.grid-data{background:none;width:100%;*width:auto;margin:0;table-layout:fixed;border-collapse:collapse;border-spacing:0;text-align:center}
+.grid-body{overflow-x:hidden;overflow-y:auto;margin-bottom:-1px}
+.grid-table{position:relative;overflow-x:auto;overflow-y:hidden;_width:100%;height:100%;_height:auto;}
+.grid-table td{white-space:nowrap;-o-text-overflow:ellipsis;text-overflow:ellipsis;overflow:hidden}
+.grid-table td.fixed-td,.grid-table td.last-td{border-right:0;padding:0;border-bottom:0 !important}
+.grid-table td.fixed-td{width:17px}
+.grid-table .first-row td{height:0 !important;border:0 !important;padding:0 !important}
+.grid-head{font-weight:600;}
+.grid-head td{padding:0}
+.grid-head .sortable{cursor:pointer}
+.grid-head .up,.grid-head .dn{display:inline-block;*display:inline;*zoom:1;background-position:right center;background-repeat:no-repeat;padding-right:8px}
+.grid-data tr.last-row td{border-bottom:0}
+.grid-data td.fixed-td{display:none}
+.grid-data input{height:16px;line-height:16px;padding:1px 2px}
+.grid-foot{position:relative;height:30px;margin-top:-1px;}
+.grid-foot .disabled{color:#ccc;cursor:default;background:none}
+.grid-foot input{width:50px;vertical-align:-1px;text-align:center}
+.grid-pager{float:left;line-height:28px;}
+.grid-pager a,.grid-pager span{display:inline-block;*display:inline;*zoom:1}
+.grid-counter{float:right;padding-right:10px;line-height:28px}
+.drag-handler{position:absolute;z-index:1;width:0;height:100%;}
+.drag-handler span{position:absolute;z-index:99;display:block;width:1px;height:100%;cursor:col-resize;background:url("Images/transparent.gif")}
+.drag-handler span.moving{background:#999;cursor:col-resize}
+.drag-panel{cursor:col-resize;}
+.drag-panel .drag-handler{width:100%}
+.drag-panel .grid-data tr{background:none}
+@-moz-document url-prefix(){.drag-handler span{margin-left:-1px}
+}.grid-wrap {font-size:12px; font-family:tahoma,arial,simsun; border:1px solid #D0DADB; background:#FAF7F5;}
+.grid-wrap a {color:#009794;}
+.grid-title {padding-left:10px;background:#F9F9F9; color:#009794; border-bottom:1px solid #D0DADB; height:25px;line-height:25px; font-weight:600;}
+.grid-body {border-top:1px solid #D0DADB;}
+
+.grid-table td {padding:0 4px;}
+
+.grid-head td {height:30px; height:29px\9; border-right:1px solid #D0DADB;} /*IE系列，td高度要少1像素*/
+.grid-head td.colspan {border-bottom:1px solid #D0DADB;}
+.grid-head .up {background-image:url(Images/up.png);}
+.grid-head .dn {background-image:url(Images/dn.png);}
+
+.grid-data {background:#f9f9f9;border-bottom:1px solid #D0DADB;}
+.grid-data tr:hover,.grid-data tr.hover {background:#fff}
+.grid-data tr.row-selected {background:#FFF4E0;}
+.grid-data tr.row-checked {background:#FFF4E0}
+.grid-data td {height:30px; height:29px\9; border-right:1px solid #D0DADB; border-bottom:1px dashed #D0DADB;}
+.grid-data tr.last-row td {height:30px\9}
+.grid-data td.last-td {background:#f9f9f9;}
+
+.grid-foot { font-size:12px; border-top:1px solid #D0DADB;}
+.grid-foot a {margin-right:6px; margin-left:4px;  text-decoration:none;}
+.grid-foot input.grid-pagenav {height:16px; line-height:16px; border:1px solid #C4D7D7;}
+
+
+/* other */
+.grid-operation a,.grid-operation a:hover{padding:0 5px;color:#009794;text-decoration:underline;}
