@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="grid.css">
+    <style>
+body {font-size:14px;}
+    </style>
+</head>
+<body>
+
+<div style="padding:1em;">
+	<button type="button" id="btn_getSelectedRow">获取选中行数据</button>
+</div>
+<div id="data_grid"></div>
+
+
+<script src="http://dn-nice.qbox.me/libs/jquery/1.x/jquery.min.js"></script>
+<script src="grid.js"></script>
+<script>
+function getGridData(len) {
+    var rows = [],
+        i = 1, len = len || 100;
+    for (; i<=len; i++) {
+        rows.push({
+            id: i,
+            name: "Jony",
+            email: "zj86@foxmail.com",
+            money: 1314588
+        });
+    }
+    return rows;
+}
+$("#data_grid").grid({
+	//width: 600,
+	//height: 300,
+    keepHeight: true,				//保持最后一页高度
+	dataSource: getGridData(513),	//模拟513条数据的数组
+	// 栏目配置，可以通过values或者formatter修改单元格显示（values为值的映射，formatter为格式化器）
+    columns: [
+		{field:'id', title:'ID', width:60, values:{1:'111', 2:'222', 3:"333"}, className: "ids", align:"center"},
+        {field:'name', title:'Name', width:200},
+		{field:'email', title:'Email', width:100},
+		{field:'money', title:'Money', width:100, formatter:'currency', align:'right'},
+		{field:'action', title:'Action', width:100, formatter:'action', align:'center'}
+    ],
+	// 自定义formatter
+	formatters: {
+		action: function() {
+			return '<a href="javascript:" data-fn="editRow">Edit</a>';
+		}
+	},
+	editRow: function(e, row) {
+		alert('edit row ' + row.id);
+	},
+	selectable: 'row multiple',		//是否可以选中行
+    pageable: {pageSize:10},		//分页参数
+    onDblclick: function(e){
+        console.log(e)
+    }
+});
+
+
+$('#btn_getSelectedRow').on('click', function(){
+	// 获取选中行数据
+	var data = $("#data_grid").data('grid').getSelectedRows();
+	alert( JSON.stringify( data ) );
+});
+</script>
+</body>
+</html>

@@ -5,8 +5,8 @@ A data table jQuery plugin.
 ### Usage
 Include resources:
 ``` html
-<link rel="stylesheet" href="path/to/jquery.grid.css">
-<script type="text/javascript" src="path/to/jquery.grid.js"></script>
+<link rel="stylesheet" href="path/to/grid.css">
+<script type="text/javascript" src="path/to/grid.js"></script>
 ```
 
 Initialization：
@@ -15,15 +15,15 @@ Initialization：
 ```
 ``` js
 $('#data_grid').grid({
-    url: 'controner/action',
+    dataSource: 'controner/action',
     columns: [
         {title: "ID", field: "table_id"},
         {title: "Name", field: "table_name"},
         {title: "Contact", field: "table_contact"},
-        {title: "Operating", field: "operating"}
+        {title: "Action", formatter: "action"}
     ],
-    onRender: {
-        operating: function(row){
+    formatters: {
+        action: function(row){
             return '<a href="#" fn="fEdit">Edit</a>';
         }
     },
@@ -36,12 +36,12 @@ $('#data_grid').grid({
 
 Get an instance:
 ``` js
-$.grid('#data_grid');
+$('#data_grid').data('grid');
 ```
 
 Refresh a grid:
 ``` js
-$('#data_grid').grid();
+$('#data_grid').grid('refresh');
 ```
 
 Refresh a grid width params:
@@ -53,7 +53,7 @@ $('#data_grid').grid({
 
 
 ### Documention
-[简体中文](http://niceue.com/grid/)
+[简体中文](http://niceue.com/nice-grid/)
 
 ### Dependencies
 [jQuery 1.7+](http://jquery.com)
@@ -67,7 +67,7 @@ $('#data_grid').grid({
 
 
 ### Bugs / Contributions
-- [Report a bug](https://github.com/niceue/grid/issues)
+- [Report a bug](https://github.com/niceue/nice-grid/issues)
 - To contribute or send an idea, github message me or fork the project
 
 
@@ -77,4 +77,4 @@ you should have installed [nodejs](nodejs.org) and run `npm install uglify-js -g
 
   
 ### License
-[MIT License](https://github.com/niceue/grid/blob/master/LICENSE.txt).
+nice Grid is available under the terms of the [MIT License](http://niceue.com/licenses/MIT-LICENSE.txt).
