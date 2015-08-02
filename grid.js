@@ -249,6 +249,7 @@
                     rowspan = (rowspan > 1) ? ' rowspan=' + rowspan : '';
                     html += '<th role="columnheader" data-index=' + j + (col.field ? ' data-field="'+ col.field : '') +'"';
                     html += ' class="'+ _className('header', col.align && 'align-'+col.align , colspan && 'colspan', col.sortable && 'sortable', colCount-1===j && 'last') + '"';
+                    if (col.hidden) html += ' style="display:none"';
                     html += colspan + rowspan + '>' + (col.title || '') + '</th>';
                 }
                 html += '</tr>';
@@ -322,7 +323,9 @@
 
                 for (j = 0; j < colCount; j++ ) {
                     col = cols[j];
-                    style = col.style ?  ' style="' + col.style + '"' : STR;
+                    style = col.hidden ? 'display:none;' : STR;
+                    if (col.style) style += col.style;
+                    if (style) style = ' style="' + style + '"';
                     // className
                     className = _className(col.align && 'align-'+col.align, colCount-1===j && 'last');
                     if (col.className) {

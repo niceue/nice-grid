@@ -38,7 +38,7 @@ $("#data_grid").grid({
 	dataSource: getGridData(513),	//模拟513条数据的数组
 	// 栏目配置，可以通过values或者formatter修改单元格显示（values为值的映射，formatter为格式化器）
     columns: [
-		{field:'id', title:'ID', width:60, values:{1:'111', 2:'222', 3:"333"}, className: "ids", align:"center"},
+		{field:'id', title:'ID', hidden:true, width:60, values:{1:'111', 2:'222', 3:"333"}, className: "ids", align:"center"},
         {field:'name', title:'Name', width:200},
 		{field:'email', title:'Email', width:100},
 		{field:'money', title:'Money', width:100, formatter:'currency', align:'right'},
