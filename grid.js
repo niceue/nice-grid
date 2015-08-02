@@ -51,8 +51,8 @@
                 records: "records"
             },
             caption: null,          //标题（暂未实现）
-            columns: [],            //列配置：field、title、align、style、className、width、minWidth、maxWidth、locked、
-                                    //template、formatter、editable、editor、sortable、sorttype、resizable、hidden、values
+            columns: [],            //列配置：field、title、align、style、className、width、minScreenWidth、locked、
+                                    //formatter、editor、editable、sortable、resizable、hidden、values
             summary: null,          //汇总（暂未实现）
             formatters: null,       //自定义格式化器
             editors: null,          //自定义编辑器（暂未实现）
@@ -612,7 +612,14 @@
             return this;
         },
 
-        // 返回选中的行数据
+        select: function() {
+
+        },
+
+        /**
+         * 获取选中行的数据
+         * @return {Array} rows
+         */
         getSelectedRows: function() {
             var me = this,
                 rows = [];
