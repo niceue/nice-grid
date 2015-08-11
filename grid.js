@@ -510,12 +510,19 @@
                 me._updatePager(rows.length);
             }
             me.$tbody.find('tbody').html( me._createRows(rows, start) );
-            me.$el[ _isVScroll(me.$tbody[0]) ? 'addClass' : 'removeClass' ](PREFIX + 'vscroll');
 
-            if (pageable && opts.keepHeight && !me.height) {
-                me.rowHeight = me.rowHeight || me.$tbody.find('tr').eq(0).outerHeight();
-                me.$tbodyWrap.css('padding-bottom', me.rowHeight * (pageable.pageSize - rows.length));
+            if (opts.height === 'auto') {
+                if (opts.keepHeight) {
+                    me.rowHeight = me.rowHeight || me.$tbody.find('tr').eq(0).outerHeight();
+                    me.$tbodyWrap.css('padding-bottom', me.rowHeight * (pageable.pageSize - rows.length));
+                }
+            } else {
+                //可能出现滚动条，要修正一下宽度
+                setTimeout(function(){
+                    me.$el[ _isVScroll(me.$tbody[0]) ? 'addClass' : 'removeClass' ](PREFIX + 'vscroll');
+                }, 100);
             }
+
             if (isFunction(opts.onComplete)) {
                 opts.onComplete.call(me);
             }
