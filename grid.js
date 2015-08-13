@@ -1,4 +1,3 @@
-
 /*! nice Grid 0.2.0
  * (c) 2015 Jony Zhang <zj86@live.cn>, MIT Licensed
  * https://github.com/niceue/nice-grid
@@ -353,7 +352,7 @@
             return html;
         },
 
-        _updatePager: function(rowCount) {
+        _updatePager: function() {
             var me = this,
                 opts = me.options,
                 pageable = opts.pageable,
@@ -435,7 +434,6 @@
             var me = this,
                 opts = me.options,
                 pageable = opts.pageable,
-                isLocal,
                 arr = [],
                 data = {},
                 settings = {};
@@ -445,20 +443,20 @@
             if (pageable) {
                 data[me._k('pageIndex')] = me.pageIndex;
                 data[me._k('pageSize')] = pageable.pageSize;
-                isLocal = pageable.local;
             }
 
             // from cache
-            if (!params && isLocal && me.rows) {
-                me.render(true);
+            if (!params && pageable.local && me.rows) {
+                me.render();
             }
             // Local data
-            else if (!params && isArray(opts.dataSource)) {
+            else if (isArray(opts.dataSource)) {
                 if (!me.rows) {
                     me.rows = opts.dataSource;
                     me.records = me.rows.length;
+                    pageable.local = true;
                 }
-                me.render(true);
+                me.render();
             }
             // Request data
             else {
@@ -493,21 +491,20 @@
             }
         },
 
-        render: function(local) {
+        render: function() {
             var me = this,
                 opts = me.options,
                 pageable = opts.pageable,
-                start = 0, end,
+                start = 0,
                 rows = me.rows;
 
             // local paging
             if (pageable) {
-                if (local) {
-                    start = (me.pageIndex - 1) * pageable.pageSize;
-                    end = start + pageable.pageSize;
-                    rows = rows.slice(start, end);
+                start = (me.pageIndex - 1) * pageable.pageSize;
+                if (pageable.local) {
+                    rows = me.rows.slice(start, start + pageable.pageSize);
                 }
-                me._updatePager(rows.length);
+                me._updatePager();
             }
             me.$tbody.find('tbody').html( me._createRows(rows, start) );
 
