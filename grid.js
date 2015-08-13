@@ -511,7 +511,7 @@
             if (opts.height === 'auto') {
                 if (opts.keepHeight) {
                     me.rowHeight = me.rowHeight || me.$tbody.find('tr').eq(0).outerHeight();
-                    me.$tbodyWrap.css('padding-bottom', me.rowHeight * (pageable.pageSize - rows.length));
+                    me.$tbodyWrap.css('padding-bottom', me.rowHeight * (pageable.pageSize - (rows.length||1))); //至少会有一行的高度
                 }
             } else {
                 //可能出现滚动条，要修正一下宽度
