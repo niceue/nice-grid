@@ -440,11 +440,6 @@
 
             if (me.$xhr || !opts.dataSource) return;
 
-            if (pageable) {
-                data[me._k('pageIndex')] = me.pageIndex;
-                data[me._k('pageSize')] = pageable.pageSize;
-            }
-
             // from cache
             if (!params && pageable.local && me.rows) {
                 me.render();
@@ -460,6 +455,10 @@
             }
             // Request data
             else {
+                if (pageable) {
+                    data[me._k('pageIndex')] = me.pageIndex;
+                    data[me._k('pageSize')] = pageable.pageSize;
+                }
                 if (isString(opts.dataSource)) {
                     settings.url = opts.dataSource;
                 } else {
